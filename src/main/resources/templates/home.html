@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TPSI lab 9</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <form action="/newpost" method="POST">
+            Tytuł: <input type="text" name="title" size="150"/><br/>
+            Treść:<br/>
+            <textarea name="content" cols="150" rows="5" ></textarea><br/>
+            <input type="submit" value="Dodaj wpis" />
+        </form>
+        
+        <div class="row" th:each="blogPost : ${blogPosts}">
+        <h2 th:text="${blogPost.title}">Tytuł</h2>
+        <p th:text="${blogPost.content}">Treść</p><br/>
+        <form action="/delpost" method="POST">
+            <input type="hidden" th:name="id" th:value="${blogPost.id}" />
+            <input type="submit" value="Usuń wpis" />
+        </form>
+        </div>
+    </body>
+</html>
